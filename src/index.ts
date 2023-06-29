@@ -26,7 +26,6 @@ const SECRET = process.env.TOKEN_SECRET;
 
 const app = express();
 const port = process.env.PORT || 8010;
-const staticDirPath = path.resolve(__dirname, "../../dist/client");
 
 app.use(cors());
 app.use(
@@ -200,12 +199,6 @@ app.post("/notifications", async (req, res) => {
 app.get("/infoPets", async (req, res) => {
   const petReportsRes = await petReports();
   res.json(petReportsRes);
-});
-
-app.use(express.static(staticDirPath));
-
-app.get("*", (req, res) => {
-  res.sendFile(staticDirPath + "/index.html");
 });
 
 app.listen(port, () => {
