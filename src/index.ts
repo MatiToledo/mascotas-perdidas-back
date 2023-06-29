@@ -18,9 +18,9 @@ import {
 } from "./controllers/pets-controller";
 import { sequelize } from "./models/connect";
 var _ = require("lodash");
-sequelize.sync({ force: true }).then((res) => {
-  console.log(res);
-});
+// sequelize.sync({ force: true }).then((res) => {
+//   console.log(res);
+// });
 
 const SECRET = process.env.TOKEN_SECRET;
 
