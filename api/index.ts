@@ -1,6 +1,5 @@
 import "dotenv/config";
 import * as express from "express";
-import * as path from "path";
 import * as cors from "cors";
 import * as jwt from "jsonwebtoken";
 import { auth, authToken, foundEmail } from "./controllers/auth-controller";
@@ -36,12 +35,12 @@ app.use(
 
 //------------------------------------------------------ USER ------------------------------------------------------
 
-app.get("/users", async (req, res) => {
+app.get("/api/users", async (req, res) => {
   const findUsersRes = await findUsers();
   res.json(findUsersRes);
 });
 
-app.get("/users/:email", async (req, res) => {
+app.get("/api/users/:email", async (req, res) => {
   if (_.isEmpty(req.params)) {
     res.status(400).json({
       message: "no tengo query",
@@ -52,7 +51,7 @@ app.get("/users/:email", async (req, res) => {
   res.json(foundEmailRes);
 });
 
-app.post("/auth", async (req, res) => {
+app.post("/api/auth", async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo body",
@@ -63,7 +62,7 @@ app.post("/auth", async (req, res) => {
   res.json(AuthRes);
 });
 
-app.post("/auth/token", async (req, res) => {
+app.post("/api/auth/token", async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo body",
@@ -90,7 +89,7 @@ function authMiddleware(req, res, next) {
   }
 }
 
-app.patch("/users/modify", authMiddleware, async (req, res) => {
+app.patch("/api/users/modify", authMiddleware, async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo body",
@@ -102,12 +101,12 @@ app.patch("/users/modify", authMiddleware, async (req, res) => {
 
 //------------------------------------------------------ PET ------------------------------------------------------
 
-app.get("/pets", async (req, res) => {
+app.get("/api/pets", async (req, res) => {
   const findPetsRes = await findPets();
   res.json(findPetsRes);
 });
 
-app.post("/pets/report", authMiddleware, async (req, res) => {
+app.post("/api/pets/report", authMiddleware, async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo body",
@@ -118,7 +117,7 @@ app.post("/pets/report", authMiddleware, async (req, res) => {
   res.json(createPetReportRes);
 });
 
-app.get("/pets/me", authMiddleware, async (req, res) => {
+app.get("/api/pets/me", authMiddleware, async (req, res) => {
   if (_.isEmpty(req._user)) {
     res.status(400).json({
       message: "no tengo user id",
@@ -129,7 +128,7 @@ app.get("/pets/me", authMiddleware, async (req, res) => {
   res.json(response);
 });
 
-app.get("/pets/around", async (req, res) => {
+app.get("/api/pets/around", async (req, res) => {
   if (_.isEmpty(req.query)) {
     res.status(400).json({
       message: "no tengo query",
@@ -140,7 +139,7 @@ app.get("/pets/around", async (req, res) => {
   res.json(petsAroundRes);
 });
 
-app.delete("/pets/delete", authMiddleware, async (req, res) => {
+app.delete("/api/pets/delete", authMiddleware, async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo query",
@@ -151,7 +150,7 @@ app.delete("/pets/delete", authMiddleware, async (req, res) => {
   res.json(deletePetReportRes);
 });
 
-app.patch("/pets/edit", authMiddleware, async (req, res) => {
+app.patch("/api/pets/edit", authMiddleware, async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo query",
@@ -162,7 +161,7 @@ app.patch("/pets/edit", authMiddleware, async (req, res) => {
   res.json(editPetReportRes);
 });
 
-app.get("/pets/toEdit/:id", authMiddleware, async (req, res) => {
+app.get("/api/pets/toEdit/:id", authMiddleware, async (req, res) => {
   console.log(req.params);
 
   if (_.isEmpty(req.params)) {
@@ -175,7 +174,7 @@ app.get("/pets/toEdit/:id", authMiddleware, async (req, res) => {
   res.json(toEditPetReportRes);
 });
 
-app.post("/pets/info", async (req, res) => {
+app.post("/api/pets/info", async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo query",
@@ -186,7 +185,7 @@ app.post("/pets/info", async (req, res) => {
   res.json(infoAboutPettRes);
 });
 
-app.post("/notifications", async (req, res) => {
+app.post("/api/notifications", async (req, res) => {
   if (_.isEmpty(req.body)) {
     res.status(400).json({
       message: "no tengo query",
@@ -196,7 +195,7 @@ app.post("/notifications", async (req, res) => {
   res.json(sendNotificationRes);
 });
 
-app.get("/infoPets", async (req, res) => {
+app.get("/api/infoPets", async (req, res) => {
   const petReportsRes = await petReports();
   res.json(petReportsRes);
 });

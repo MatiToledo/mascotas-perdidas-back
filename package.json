@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon --watch ./src/index.ts --exec ts-node ./src/index.ts",
+    "dev": "nodemon --watch ./api/index.ts --exec ts-node ./api/index.ts",
     "build": "tsc",
     "test": "ava",
     "start": "node ./dist/index.js",
-    "sync": "ts-node ./src/sync.ts"
+    "sync": "ts-node ./api/sync.ts"
   },
   "dependencies": {
     "@mapbox/mapbox-gl-geocoder": "^5.0.1",
