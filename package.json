@@ -1,0 +1,34 @@
+{
+  "name": "10-nuevo",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon --watch ./src/index.ts --exec ts-node ./src/index.ts",
+    "build": "tsc",
+    "test": "ava",
+    "start": "node ./dist/index.js",
+    "sync": "ts-node ./src/sync.ts"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^5.0.1",
+    "@sendgrid/mail": "^7.7.0",
+    "@types/node": "^20.3.2",
+    "@vaadin/router": "^1.7.5",
+    "algoliasearch": "^4.18.0",
+    "cloudinary": "^1.37.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "dropzone": "^6.0.0-beta.2",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
+    "lodash": "^4.17.21",
+    "mapbox": "^1.0.0-beta10",
+    "mapbox-gl": "^2.15.0",
+    "nodemon": "^2.0.22",
+    "parcel": "^2.9.3",
+    "pg": "^8.11.1",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.32.1",
+    "typescript": "^5.1.6"
+  }
+}
